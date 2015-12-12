@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: WP REST API Menus
- * Plugin URI:  https://github.com/nekojira/wp-api-menus
+ * Plugin URI:  https://github.com/nekojira/wp-menus
  * Description: Extends WP API with WordPress menu routes.
  *
  * Version:     1.2.0
@@ -9,7 +9,7 @@
  * Author:      Fulvio Notarstefano
  * Author URI:  https://github.com/nekojira
  *
- * Text Domain: wp-api-menus
+ * Text Domain: wp-menus
  *
  * @package WP_API_Menus
  */
@@ -34,10 +34,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-// WP API v1.
-include_once 'lib/wp-api-menus-v1.php';
 // WP API v2.
-include_once 'lib/wp-api-menus-v2.php';
+include_once 'lib/wp-menus-v2.php';
 
 if ( ! function_exists ( 'wp_rest_menus_init' ) ) :
 

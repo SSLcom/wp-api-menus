@@ -8,7 +8,7 @@ module.exports = function( grunt ) {
 	var distFiles =  [
 		'lib/**',
 		'license.txt',
-		'wp-api-menus.php',
+		'wp-menus.php',
 		'readme.txt'
 	];
 
@@ -18,7 +18,7 @@ module.exports = function( grunt ) {
 
 		checktextdomain: {
 			options: {
-				text_domain   : 'wp-api-menus',
+				text_domain   : 'wp-menus',
 				correct_domain: false,
 				keywords      : [
 					'__:1,2d',
@@ -55,8 +55,8 @@ module.exports = function( grunt ) {
 				options: {
 					cwd            : '',
 					domainPath     : '/languages',
-					potFilename    : 'wp-api-menus.pot',
-					mainFile       : 'wp-api-menus.php',
+					potFilename    : 'wp-menus.pot',
+					mainFile       : 'wp-menus.php',
 					include        : [],
 					exclude        : [
 						'assets/',
@@ -72,7 +72,7 @@ module.exports = function( grunt ) {
 						poedit                 : true,
 						'x-poedit-keywordslist': true,
 						'language'             : 'en_US',
-						'report-msgid-bugs-to' : 'https://github.com/nekojira/wp-api-menus/issues',
+						'report-msgid-bugs-to' : 'https://github.com/nekojira/wp-menus/issues',
 						'last-translator'      : 'Fulvio Notarstefano <fulvio.notarstefano@gmail.com>',
 						'language-Team'        : 'Fulvio Notarstefano <fulvio.notarstefano@gmail.com>'
 					},
@@ -102,7 +102,7 @@ module.exports = function( grunt ) {
 			main: {
 				expand: true,
 				src   : distFiles,
-				dest  : 'build/wp-api-menus'
+				dest  : 'build/wp-menus'
 			}
 		},
 
@@ -110,19 +110,19 @@ module.exports = function( grunt ) {
 			main: {
 				options: {
 					mode   : 'zip',
-					archive: './build/wp-api-menus-<%= pkg.version %>.zip'
+					archive: './build/wp-menus-<%= pkg.version %>.zip'
 				},
 				expand : true,
 				src    : distFiles,
-				dest   : '/wp-api-menus'
+				dest   : '/wp-menus'
 			}
 		},
 
 		wp_deploy: {
 			deploy: {
 				options: {
-					plugin_slug     : 'wp-api-menus',
-					build_dir       : 'build/wp-api-menus',
+					plugin_slug     : 'wp-menus',
+					build_dir       : 'build/wp-menus',
 					max_buffer      : 400 * 1024
 				}
 			}

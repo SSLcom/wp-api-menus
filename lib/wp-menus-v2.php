@@ -40,16 +40,14 @@ if ( ! class_exists( 'WP_REST_Menus' ) ) :
          */
         public function register_routes() {
 
-            $base = 'menus';
-
-            register_rest_route( 'wp-api-menus/v2', '/'.$base, array(
+            register_rest_route( 'menus', '/list', array(
                 array(
                     'methods'  => WP_REST_Server::READABLE,
                     'callback' => array( $this, 'get_menus' ),
                 )
             ) );
 
-            register_rest_route( 'wp-api-menus/v2', '/'.$base.'/(?P<id>\d+)', array(
+            register_rest_route( 'menus', '/'.'/(?P<id>\d+)', array(
                 array(
                     'methods'  => WP_REST_Server::READABLE,
                     'callback' => array( $this, 'get_menu' ),
@@ -61,14 +59,14 @@ if ( ! class_exists( 'WP_REST_Menus' ) ) :
                 )
             ) );
 
-            register_rest_route( 'wp-api-menus/v2', '/menu-locations', array(
+            register_rest_route( 'menus', '/locations', array(
                 array(
                     'methods'  => WP_REST_Server::READABLE,
                     'callback' => array( $this, 'get_menu_locations' ),
                 )
             ) );
 
-            register_rest_route( 'wp-api-menus/v2', '/menu-locations/(?P<location>[a-zA-Z0-9_-]+)', array(
+            register_rest_route( 'menus', '/locations/(?P<location>[a-zA-Z0-9_-]+)', array(
                 array(
                     'methods'  => WP_REST_Server::READABLE,
                     'callback' => array( $this, 'get_menu_location' ),
@@ -86,7 +84,7 @@ if ( ! class_exists( 'WP_REST_Menus' ) ) :
          */
         public static function get_menus() {
 
-            $rest_url = get_rest_url() . '/menus/';
+            $rest_url = get_rest_url() . '/list/';
             $wp_menus = wp_get_nav_menus();
 
             $i = 0;
@@ -122,7 +120,7 @@ if ( ! class_exists( 'WP_REST_Menus' ) ) :
         public function get_menu( $request ) {
 
             $id = (int) $request['id'];
-            $rest_url = get_rest_url() . self::api_namespace() . '/menus/';
+            $rest_url = get_rest_url() . self::api_namespace() . '/list/';
             $wp_menu_object = $id ? wp_get_nav_menu_object( $id ) : array();
             $wp_menu_items = $id ? wp_get_nav_menu_items( $id ) : array();
 
@@ -214,7 +212,7 @@ if ( ! class_exists( 'WP_REST_Menus' ) ) :
          */
         public static function get_menu_locations( $request ) {
 
-            $rest_url = get_rest_url() . self::api_namespace() . '/menu-locations/';
+            $rest_url = get_rest_url() . self::api_namespace() . '/locations/';
 
             $locations = get_nav_menu_locations();
             $registered_menus = get_registered_nav_menus();
